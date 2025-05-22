@@ -1,0 +1,96 @@
+# Создание таблицы Клиенты
+create table if not exists Clients (
+id_client int primary key,
+full_name char(80) NOT null,
+telephone_number char(80) NOT null,
+email char (80),
+promotional_status char(80),
+total_amount_ransom decimal(8,2),
+created_at timestamp NOT NULL DEFAULT current_timestamp,
+updated_at timestamp NOT NULL DEFAULT current_timestamp);
+
+## Заполнение таблицы Клиенты
+INSERT INTO Clients (id_client,full_name,telephone_number) VALUES (1, 'Пупкин Иван Абрамович', '375291478536', 'pupkin@gmail.com', 'not vip', '100.99');
+INSERT INTO Clients VALUES (2, 'Турок Иван Валерьевич', '375445688636', 'turok@gmail.com', 'vip', '50.48');
+INSERT INTO Clients VALUES (3, 'Васильева Ангелина Петровна', '375337588436', 'cvetok@gmail.com', 'not vip', '74.33');
+INSERT INTO Clients VALUES (4, 'Петрова Лариса Андреевна', '375292587436', 'petrova@gmail.com', 'not vip', '92.33');
+INSERT INTO Clients VALUES (5, 'Крюк Кирилл Дмитриевич', '375445566436', 'kruk@gmail.com', 'vip', '600.00');
+INSERT INTO Clients VALUES (6, 'Шах Екатерина Васильевна', '375299858436', 'shax@gmail.com', 'vip', '953.45');
+
+# Создание таблицы Продукты
+create table if not exists Products (
+id_product int primary KEY,
+product_category char (80),
+product_name char (80) NOT null,
+price decimal (8,2) NOT null,
+quantity int NOT null,
+created_at timestamp NOT NULL DEFAULT current_timestamp,
+updated_at timestamp NOT NULL DEFAULT current_timestamp);
+
+## Заполнение таблицы Продуты
+INSERT INTO Products VALUES (1, 'Бакалея', 'Макароны', 5.10, 48);
+INSERT INTO Products VALUES (2, 'Молочные продукты', 'Молоко', 2.80, 25);
+INSERT INTO Products VALUES (3, 'Мясные продукты', 'Колбаски свинные', 18.30, 40);
+INSERT INTO Products VALUES (4, 'Напитки', 'Сок вишневый', 4.20, 12);
+INSERT INTO Products VALUES (5, 'Рыба и морепродукты', 'Стейк горбуши', 38.18, 25);
+INSERT INTO Products VALUES (6, 'Бакалея', 'Гречка', 4.18, 30);
+INSERT INTO Products VALUES (7, 'Напитки', 'Квас', 6.50, 77);
+INSERT INTO Products VALUES (8, 'Молочные продукты', 'Кефир', 2.50, 14);
+
+# Создание таблицы Роли Пользователей
+create table if not exists Users_Roles (
+id_users_role int primary KEY,
+name_role char (30) NOT null,
+rights char (50),
+created_at timestamp NOT NULL DEFAULT current_timestamp,
+updated_at timestamp NOT NULL DEFAULT current_timestamp);
+
+## Заполнение таблицы Роли Пользователей
+INSERT INTO Users_Roles VALUES (101, 'Администратор', 'Полный доступ');
+INSERT INTO Users_Roles VALUES (102, 'Менеджер', 'Отчетность');
+INSERT INTO Users_Roles VALUES (103, 'Кладовщик', 'Перемещение товара');
+
+# Создание таблицы Акции
+create table if not exists Stocks (
+id_stock int primary KEY,
+stock_type char (60),
+percent decimal (8,2) NOT null,
+date_from date,
+date_to date,
+sum_amount decimal (8,2) NOT null,
+created_at timestamp NOT NULL DEFAULT current_timestamp,
+updated_at timestamp NOT NULL DEFAULT current_timestamp);
+
+## Заполнение таблицы Акции
+INSERT INTO Stocks VALUES (1, 'Разовый выкуп', 1.00,'2025-04-27','2025-04-27', 400.00);
+INSERT INTO Stocks VALUES (2, 'Разовый выкуп', 2.00,'2025-04-27',null, 500.00);
+INSERT INTO Stocks VALUES (3, 'Общий выкуп', 1.00,'2025-04-27','2025-04-27', 400.00);
+INSERT INTO Stocks VALUES (4, 'Общий выкуп', 2.00,'2025-04-27',null, 500.00);
+
+# Создание таблицы Заказы
+create table if not exists Orders (
+id_order int primary key,
+order_number int not null,
+order_status char (25) not null,
+order_date date,
+id_client int not null,
+id_product int,
+sum_amount_order decimal (8,2),
+created_at timestamp NOT NULL DEFAULT current_timestamp,
+updated_at timestamp DEFAULT current_timestamp,
+CONSTRAINT fk_orders_id_client
+FOREIGN KEY (id_client)
+references Clients (id_client)
+ON DELETE cascade
+ON UPDATE cascade);
+
+## Заполнение таблицы Заказы
+INSERT INTO Orders VALUES (111,1, 'Создан','2025-05-01',1,8,5.00);
+INSERT INTO Orders VALUES (112,2, 'Собран','2025-05-02',2,6,4.18);
+INSERT INTO Orders VALUES (113,3, 'Оплачен','2025-05-02',1,3,18.30);
+INSERT INTO Orders VALUES (114,4, 'Создан','2025-05-02',6,2,28.00);
+INSERT INTO Orders VALUES (115,5, 'Собран','2025-05-03',4,4,8.40);
+INSERT INTO Orders VALUES (116,6, 'Оплачен','2025-05-03',4,5,38.18);
+INSERT INTO Orders VALUES (117,7, 'Создан','2025-05-03',3,5,38.18);
+
+
