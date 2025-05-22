@@ -13,4 +13,4 @@
 
 
 ## Описание Кafka
-Описание используемого брокера сообщений, приложения продьюсера, консьюмера, а так же требования предствалены в разделе [Kafka](https://github.com/YanaKidun/IShop/tree/main/Kafka)
+Описание требований к сообщениям предствалены в [файле](https://github.com/VikaRasanova/I-SHOP-Product/blob/main/Kafka/Requirements)
