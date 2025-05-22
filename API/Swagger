@@ -1,0 +1,308 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/RASANOVAVIKTORYIA/I-SHOP-Product/1.0.0
+info:
+  description: API for ONLINE SHOP
+  version: "1.0.0"
+  title: API ONLINE SHOP I-SHOP-Product
+  contact:
+    email: rasanova.v.a@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: client
+    description: Покупатель
+  - name: admin
+    description: Администратор
+  - name: Manager
+    description: Менеджер
+  - name: users
+    description: Пользователи (все группы пользователей)
+paths:
+   /products:
+    get:
+      tags:
+        - users
+      summary: Посмотреть товар в каталоге 
+      description: Получение списка всех товаров в магазине с поддержкой пагинации и сортировки.
+      parameters:
+        - name: page
+          in: query
+          description: Номер страницы для пагинации.
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          description: Количество товаров на странице.
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10
+            default: 10
+        - name: sort_by
+          in: query
+          description: Поле для сортировки (product category).
+          required: false
+          schema:
+            type: string
+            enum: [product category]
+            default: product category
+        - name: order
+          in: query
+          description: Порядок сортировки.
+          required: false
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: asc
+      responses:
+        '200':
+          description: Список товаров
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/product'
+        '500':
+          description: Ошибка сервера
+          
+    post:
+      tags:
+        - admin
+      summary: 'Добавить товар'
+      security:
+        - bearerAuth: []
+      description: Добавить товар в каталог
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/productNew'
+        description: Новый товар для добавления в каталог
+      responses:
+        '201':
+          description: товар добавлен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1587458
+        '401':
+          description: Неправильный логин или пароль
+        '403':
+          description: Ошибка доступа
+          
+    put:  
+      tags:
+        - admin
+      summary: 'Изменить товар'
+      security:
+        - bearerAuth: []
+      description: Изменение информации о товаре в каталоге
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/product'
+        description: Товар для изменения информации в каталоге
+      responses:
+        '201':
+          description: Информация о товаре изменена
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 985895
+        '401':
+          description: Неправильный логин или пароль
+        '403':
+          description: Ошибка доступа
+        '404':
+          description: Товар не найден
+          
+   /products/{id}:
+    delete:
+      tags:
+        - admin
+      summary: Удалить товар из каталога
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Идентификатор товара, который нужно удалить
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '201':
+          description: Товар удален
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 985895
+        '404':
+          description: Товар не найден
+        
+   /orders:
+    patch:
+      tags:
+        - users
+      summary: 'Оформить заказ'
+      description: Изменение статуса заказа
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/order'
+        description: Заказ для изменения статуса
+      responses:
+        '201':
+          description: Статус заказа изменен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 958458
+        '404':
+          description: Заказ не найден
+          
+   /login:
+    post:
+      tags:
+        - users
+      summary: Вход пользователя в систему
+      description: Аутентификация пользователя с использованием логина и пароля.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                  description: Логин пользователя
+                  example: "R.v22-48"
+                password:
+                  type: string
+                  format: password
+                  description: Пароль пользователя
+                  example: "password"
+      responses:
+        '200':
+          description: Успешная аутентификация
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: Bearer Token для аутентификации
+                    example: "fkfkfkfkf58f4f4g5f5f4d4fg5gg"
+        '401':
+          description: Неправильный логин или пароль
+        
+   
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  
+  schemas:
+    product:
+      type: object
+      required:
+        - id_product
+        - product_name
+        - product_category
+        - price
+        - quantity
+      properties:
+        id_product:
+          type: integer
+          description: Идентификатор товара
+          example: 5874458
+        product_name:
+          type: string
+          description: Наименование продукта
+          example: "Молоко"
+        product_category:
+          type: string
+          description: Молочные продукты
+        price:
+          type: number
+          format: decimal
+          description: Цена товара
+          example: 5.10
+        quantity:
+          type: number
+          format: decimal
+          description: Количество товара
+          example: 10
+          
+    productNew:
+      type: object
+      required:
+        - product_name
+        - product_category
+        - price
+      properties:
+        product_name:
+          type: string
+          description: Наименование продукта
+          example: "Батон"
+        product_category:
+          type: string
+          description: Хлебобулочные изделия
+        price:
+          type: number
+          format: decimal
+          description: Цена товара
+          example: 3.52
+          
+    order:
+      type: object
+      required:
+        - id_order
+        - order_ststus
+      properties:
+        id_product:
+          type: integer
+          description: Идентификатор заказа
+          example: 958458
+        order_status:
+          type: string
+          description: Статус заказа
+          example: "Создан"
