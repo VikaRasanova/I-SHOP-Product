@@ -9,7 +9,7 @@
 Архитектура проекта пердставлена в файле [C4_Architecture](https://github.com/YanaKidun/IShop/tree/main/System%20Architecture) 
 
 ## API
-Докуметация API для работы с проектом представлена в [[файле](https://github.com/VikaRasanova/I-SHOP-Product/blob/main/API/Swagger) дополнительно ознакомится можно прейдя по сслыке: https://app.swaggerhub.com/apis/RASANOVAVIKTORYIA/I-SHOP-Product/1.0.0
+Докуметация API для работы с проектом представлена в [файле](https://github.com/VikaRasanova/I-SHOP-Product/blob/main/API/Swagger) дополнительно ознакомится можно прейдя по сслыке: https://app.swaggerhub.com/apis/RASANOVAVIKTORYIA/I-SHOP-Product/1.0.0
 
 
 ## Описание Кafka
