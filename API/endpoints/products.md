@@ -86,3 +86,28 @@
 401: Unauthorized                                  
 403: Forbidden                   
 404: Not found
+
+# DELETE /products/products_id
+
+## Описание метода
+Удаление товара из каталога. Доступно только для администратора.
+
+## Тело запроса
+```json
+{
+  "id_product": "985895"
+}
+ ```
+
+## Тело ответа
+```json
+{
+  "id_product": 985895
+}
+ ```
+
+## Описание ошибок:
+201: Create (id_product)            
+401: Unauthorized                                  
+403: Forbidden                   
+404: Not found
