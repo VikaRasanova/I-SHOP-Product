@@ -14,3 +14,6 @@
 
 ## Описание Кafka
 Описание требований к сообщениям предствалены в [файле](https://github.com/VikaRasanova/I-SHOP-Product/blob/main/Kafka/Requirements)
+
+
+![image](https://github.com/user-attachments/assets/361f0dfb-58df-43e4-b2ad-1dfc867360c6)
