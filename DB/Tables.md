@@ -33,3 +33,16 @@
 | sum_amount_order    | decimal         | Сумма заказа                              |
 | created_at          | datetime        | Дата и время создания                     |
 | updated_at          | datetime        | Дата и время изменения                    |
+
+# Таблица Payments
+| Атрибут             | Тип             | Описание                                  |
+|---------------------|-----------------|-------------------------------------------|
+| id_payment          | int             | Идентификатор платежа                     |
+| payment_date        | date            | Дата платежа                              |
+| payment_amount      | decimal         | Сумма платежа                             |
+| id_client           | int             | Идентификатор клиента                     |
+| discount_amount     | decimal         | Сумма скидки                              |
+| discount_percentage | decimal         | Процент скидки                            |
+| id_order            | int             | Идентификатор заказа                      |
+| created_at          | datetime        | Дата и время создания                     |
+| updated_at          | datetime        | Дата и время изменения                    |
