@@ -20,3 +20,16 @@
 | quantity            | int             | Количество                                |
 | created_at          | datetime        | Дата и время создания                     |
 | updated_at          | datetime        | Дата и время изменения                    |
+
+# Таблица Orders
+| Атрибут             | Тип             | Описание                                  |
+|---------------------|-----------------|-------------------------------------------|
+| id_order            | int             | Идентификатор заказа                      |
+| order_number        | int             | Номер заказа                              |
+| order_status        | char            | Статус заказа                             |
+| order_date          | date            | Дата заказа                               |
+| id_client           | int             | Идентификатор клиента                     |
+| id_product          | int             | Идентификатор товара                      |
+| sum_amount_order    | decimal         | Сумма заказа                              |
+| created_at          | datetime        | Дата и время создания                     |
+| updated_at          | datetime        | Дата и время изменения                    |
