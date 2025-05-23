@@ -11,7 +11,8 @@
 ## Описание Кafka
 Описание требований к сообщениям предствалены в [файле](https://github.com/VikaRasanova/I-SHOP-Product/blob/main/Kafka/Requirements)
 
-## Модель архитектуры C4 доступна по ссылке (https://app.diagrams.net/#G1l3QEVEgV5hxUhYX8iLRSKOEG5_MTvGjn#%7B%22pageId%22%3A%22etEh2EP_2_HESVDKXk11%22%7D)
+## Модель архитектуры C4
+Модель C4 оступна по ссылке https://app.diagrams.net/#G1l3QEVEgV5hxUhYX8iLRSKOEG5_MTvGjn#%7B%22pageId%22%3A%22etEh2EP_2_HESVDKXk11%22%7D
 
 ## Физическая модель представлена на схеме:
 ![image](https://github.com/user-attachments/assets/361f0dfb-58df-43e4-b2ad-1dfc867360c6)
